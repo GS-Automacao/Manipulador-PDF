@@ -1,12 +1,12 @@
 from configs.utils.update_functions import check_update
 from configs.utils.menu_functions import main_hub
 
-VERSION: str = '1.1.0'
+VERSION: str = 'v1.2.2'
 
 
 def run():
     print('Manipulador de PDFs')
-    print('V: ', VERSION)
+    print(VERSION)
     check_update(VERSION)  # Verifica se há atualizações.
     main_hub()  # inicia o menu.
 

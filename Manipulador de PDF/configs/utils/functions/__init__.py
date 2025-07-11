@@ -21,6 +21,8 @@ from .f18 import f18
 from .f19 import f19
 from .f20 import f20
 from .f21 import f21
+from .f22 import f22
+from .f23 import f23
 
 # Caminho do diretório onde este __init__.py está.
 diretorio = pathlib.Path(__file__).parent
@@ -49,5 +51,7 @@ NAMES = {
     18: 'Rendimentos Fortes',
     19: 'Planos de Saúde',
     20: 'Folha por Centro de Custo Protheus',
-    21: 'Recibos de Pagamento Protheus'
+    21: 'Recibos de Pagamento Protheus',
+    22: 'NFs Camaçari',
+    23: 'Nfs Lauro de Freitas'
 }
