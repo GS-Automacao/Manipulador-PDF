@@ -3,3 +3,6 @@
 *.pyc
 *.json
 *.exe
+/build
+/dist
+Manipulador de PDF/comandos.txt
