@@ -4,16 +4,20 @@ import os
 
 
 def f15() -> int:
-    n_pags = 0
     files = [file for file in os.listdir() if '.pdf' in file.lower()]
-
+    n_pags = len(files)
     for file in tqdm(files):
-        with open(file, 'rb') as file_b:
-            pdf = PdfReader(file_b)
-            n_pags += len(pdf.pages)
-            rows = pdf.pages[0].extract_text().split('\n')
-            nome = rows[-3].split('Endereço')[-1]
-            cnpj = ''.join([char for char in rows[-1].split()[0] if char.isnumeric()])
-            nome_arq = f'NF {nome}-{cnpj}.pdf'
-        os.rename(file, nome_arq)
+        with open(file, 'rb') as file_bin:
+            pdf = PdfReader(file_bin)
+            page = pdf.pages[0]
+            rows = page.extract_text().split('\n')
+        for i, row in enumerate(rows):
+            if 'Competência' in row:
+                nome = row[:row.find('Competência')]
+            elif row.startswith('Insc.Municipal'):
+                cnpj = ''.join(char for char in rows[i+1] if char.isnumeric())
+                break
+        new_path = f'NF {nome}-{cnpj}.pdf'
+        os.rename(file, new_path)
+
     return n_pags
