@@ -1,7 +1,7 @@
 from configs.utils.update_functions import check_update
 from configs.utils.menu_functions import main_hub
 
-VERSION: str = 'v1.2.3'
+VERSION: str = 'v1.2.5'
 
 
 def run():
@@ -11,6 +11,7 @@ def run():
     main_hub()  # inicia o menu.
 
 
+run()
 if __name__ == '__main__':
     try:
         run()

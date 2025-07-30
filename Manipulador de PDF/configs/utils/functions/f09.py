@@ -16,7 +16,7 @@ def f09() -> int:
                         '2: Separar por Lotação.\n'
                         'Escolha: ')
 
-    files = [file for file in os.listdir() if '.pdf' in file]
+    files = [file for file in os.listdir() if '.pdf' in file.lower()]
 
     for arq in files:
         with open(arq, 'rb') as file:
@@ -26,11 +26,11 @@ def f09() -> int:
             for pag in tqdm(pdf.pages):
                 writer = PdfWriter()
                 rows = pag.extract_text().split('\n')
-                lotacao = rows[9][:-5]
-                cnpj = ''.join(char for char in rows[5].split()[1] if char.isnumeric())
+                lotacao = rows[14]
+                cnpj = ''.join(char for char in rows[8].split()[1] if char.isnumeric())
                 if escolha == '1':
                     # Acessa a linha que contém o nome do empregado.
-                    nome = rows[11]
+                    nome = rows[18]
                     file_name = f'Recibos\\{lotacao}-{nome}-{cnpj}.pdf'.replace('/', '')
                 else:
                     file_name = f'Recibos\\{lotacao}-{cnpj}.pdf'.replace('/', '')
