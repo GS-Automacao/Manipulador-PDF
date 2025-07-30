@@ -11,7 +11,7 @@ def check_update(VERSION: str):
             input('Para continuar utilizando esta versão, pressione Enter')
 
 def get_last_version():
-    OWNER = "GS-Luiz-Gustavo-Queiroz"
+    OWNER = "GS-Automacao"
     REPO = "Manipulador-PDF"
     url_api = f"https://api.github.com/repos/{OWNER}/{REPO}/releases/latest"
 

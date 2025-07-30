@@ -5,7 +5,7 @@ import zipfile
 
 
 # Configurações do repositório
-OWNER = "GS-Luiz-Gustavo-Queiroz"
+OWNER = "GS-Automacao"
 REPO = "Manipulador-PDF"
 
 def baixar_release_mais_recente():
