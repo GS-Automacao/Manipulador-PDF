@@ -1,7 +1,12 @@
 from configs.utils.update_functions import check_update
 from configs.utils.menu_functions import main_hub
 import ctypes
+import os
+import sys
 ctypes.windll.kernel32.SetConsoleTitleW("Manipulador de PDF")
+
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+sys.path.insert(0, ROOT_DIR)
 
 VERSION: str = 'v1.2.7'
 
