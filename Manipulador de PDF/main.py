@@ -1,7 +1,9 @@
 from configs.utils.update_functions import check_update
 from configs.utils.menu_functions import main_hub
+import ctypes
+ctypes.windll.kernel32.SetConsoleTitleW("Manipulador de PDF")
 
-VERSION: str = 'v1.2.3'
+VERSION: str = 'v1.2.7'
 
 
 def run():

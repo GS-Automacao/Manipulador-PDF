@@ -27,29 +27,35 @@ def f06() -> int:
             pdf_writer = PdfWriter()
             lotacao = ''
             i = 0
+            print(len(pdf_reader.pages))
             if 'Estabelecimento:' in pdf_reader.pages[0].extract_text().split('\n')[4]:
                 i = 1
-            for page_pdf in tqdm(pdf_reader.pages):
+            """for page_pdf in tqdm(pdf_reader.pages):
                 page = page_pdf.extract_text().split('\n')
                 tipo = ' '.join(page[0].split()[:3])
+
                 # Verifica o tipo de arquivo
                 if tipo == 'Folha de Pagamento':
-                    lotacao_nova = page[5+i]
+                    lotacao_nova = page[13+i]
                 elif tipo == 'Listagem de Férias':
-                    lotacao_nova = page[4+i]
+                    lotacao_nova = page[12+i]
                 elif tipo == 'Listagem de Rescisão':
-                    lotacao_nova = page[4+i]
+                    lotacao_nova = page[12+i]
                 else:
-                    print(tipo)
                     continue
-                if len(lotacao_nova.split()[0]) > 3:
-                    continue
+                # if ('Total Geral' in lotacao_nova):
+                #     continue
+                # if len(lotacao_nova.split()[0]) > 3:
+                #     continue
+
                 # Verifica se já há umas pasta para o tipo
                 if not os.path.exists(f'Arquivos/{tipo}'):
                     os.mkdir(f'Arquivos/{tipo}')
+
                 # Verifica se está na página de resumo ou se a lotacao for a mesma, se sim,
                 # junta as páginas, caso contrário, salva o arquivo atual e cria um pdf novo.
-                if 'Total Geral ' in lotacao_nova or lotacao_nova != lotacao:
+                if ('Total Geral' in lotacao_nova) or (lotacao_nova != lotacao):
+                # if ('Total Geral' not in lotacao_nova) and (lotacao_nova != lotacao):
                     if pdf_writer.pages:
                         cnpj = ''
                         if tem_relacao:
@@ -63,5 +69,55 @@ def f06() -> int:
                     lotacao = lotacao_nova
                     pdf_writer.add_page(page_pdf)
                 else:
+                    pdf_writer.add_page(page_pdf)"""
+
+
+            #INICIO BLOCO DE TESTES
+            for page_pdf in tqdm(pdf_reader.pages):
+                page = page_pdf.extract_text().split('\n')
+                tipo = ' '.join(page[0].split()[:3])
+
+                # Verifica se já há umas pasta para o tipo
+                if not os.path.exists(f'Arquivos/{tipo}'):
+                    os.mkdir(f'Arquivos/{tipo}')
+
+                # Verifica o tipo de arquivo
+                if tipo == 'Folha de Pagamento':
+                    lotacao_nova = page[13+i]
+                elif tipo == 'Listagem de Férias':
+                    lotacao_nova = page[12+i]
+                elif tipo == 'Listagem de Rescisão':
+                    lotacao_nova = page[12+i]
+                
+                # if 'Total Geral' not in lotacao_nova:
+                #     pass
+                # else:
+                #     lotacao = lotacao_nova
+                #     continue
+                    
+                # if lotacao_nova!=lotacao:
+                #     pdf_writer = PdfWriter()
+
+                # Verifica se está na página de resumo ou se a lotacao for a mesma, se sim,
+                # junta as páginas, caso contrário, salva o arquivo atual e cria um pdf novo.
+                # if ('Total Geral' in lotacao_nova) or (lotacao_nova != lotacao):
+                if (lotacao_nova != lotacao):
+                    if pdf_writer.pages:
+                        cnpj = ''
+                        if tem_relacao:
+                            result = df[df['nome'] == lotacao]['cnpj']
+                            if len(result) == 1:
+                                cnpj = result[0]
+                        file_name = f'Arquivos/{tipo}/{lotacao.replace('/', '')}-{cnpj}.pdf'
+
+                        with open(file_name, 'wb') as output_file:
+                            pdf_writer.write(output_file)
+                        pdf_writer = PdfWriter()
+                    lotacao = lotacao_nova
+                    if ('Total Geral' not in lotacao_nova):
+                        pdf_writer.add_page(page_pdf)
+                else:
                     pdf_writer.add_page(page_pdf)
+                # pdf_writer.add_page(page_pdf)
+            #FIM BLOCO DE TESTES
     return tot_pags
