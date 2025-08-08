@@ -1,5 +1,6 @@
 import pathlib
 import os
+import sys
 from .f01 import f01
 from .f02 import f02
 from .f03 import f03
@@ -27,6 +28,7 @@ from .f24 import f24
 
 # Caminho do diretório onde este __init__.py está.
 diretorio = pathlib.Path(__file__).parent
+
 # Conta quantos arquivos de função existem no diretório.
 N_FUNCTIONS = len([file for file in os.listdir(diretorio) if file.startswith('f') and file.endswith('.py')])
 __all__ = [f'f{i:02}' for i in range(1, N_FUNCTIONS+1)]
