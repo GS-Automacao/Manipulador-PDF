@@ -8,6 +8,16 @@ ctypes.windll.kernel32.SetConsoleTitleW("Manipulador de PDF")
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 sys.path.insert(0, ROOT_DIR)
 
+#DEFININDO A RAIZ DO PROJETO PARA COMPATIBILIZAR O CAMINHO DA CONFIGS
+if getattr(sys, 'frozen', False):
+    # PyInstaller
+    ROOT_DIR = os.path.dirname(sys.executable)
+    sys.path.insert(0, ROOT_DIR)
+else:
+    # Ambiente de desenvolvimento
+    ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+    sys.path.insert(0, ROOT_DIR)
+
 VERSION: str = 'v1.2.7'
 
 
