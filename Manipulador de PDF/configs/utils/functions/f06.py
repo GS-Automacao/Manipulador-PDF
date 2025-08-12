@@ -27,7 +27,7 @@ def f06() -> int:
             pdf_writer = PdfWriter()
             lotacao = ''
             i = 0
-            print(len(pdf_reader.pages))
+            # print(len(pdf_reader.pages))
             if 'Estabelecimento:' in pdf_reader.pages[0].extract_text().split('\n')[4]:
                 i = 1
 
