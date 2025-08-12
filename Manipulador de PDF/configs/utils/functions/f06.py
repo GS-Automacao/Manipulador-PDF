@@ -35,7 +35,7 @@ def f06() -> int:
             for page_pdf in tqdm(pdf_reader.pages):
                 page = page_pdf.extract_text().split('\n')
                 tipo = ' '.join(page[0].split()[:3])
-                print(tipo)
+                # print(tipo)
 
                 # Verifica se já há umas pasta para o tipo
                 if not os.path.exists(f'Arquivos/{tipo}'):
@@ -48,7 +48,7 @@ def f06() -> int:
                     lotacao_nova = page[13+i]
                 elif tipo == 'Listagem de Rescisão':
                     lotacao_nova = page[13+i]
-                print(lotacao_nova)
+                # print(lotacao_nova)
 
                 # Verifica se está na página de resumo ou se a lotacao for a mesma, se sim,
                 # junta as páginas, caso contrário, salva o arquivo atual e cria um pdf novo.
