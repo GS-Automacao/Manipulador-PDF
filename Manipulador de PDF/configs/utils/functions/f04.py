@@ -8,6 +8,16 @@ def f04() -> int:
     if not os.path.exists('Arquivos'):
         os.mkdir('Arquivos')
     tot_pags: int = 0
+    prefixos = {
+        '0': 'Boleto Adm -',
+        '1': 'Boleto Despesa - '
+    }
+    print('Digite '
+          '0 para definir os boletos como ADM;'
+          '1 para Despesa;'
+          '2 para nenhum.\n')
+    r = input()
+    prefixo = prefixos.get(r, '')
     # Itera por todos os arquivos .pdf.
     for arq in [file for file in os.listdir() if '.pdf' in file]:
         with open(arq, 'rb') as file:
@@ -22,7 +32,7 @@ def f04() -> int:
                         condominio = row[row.rfind(':') + 2:]
                         cnpj = ''.join(char for char in page[i + 1] if char.isnumeric())
                         break
-                nome_arq = f'Arquivos/{condominio}-{cnpj}.pdf'
+                nome_arq = f'Arquivos/{prefixo}{condominio}-{cnpj}.pdf'
                 writer = PdfWriter()
                 writer.add_page(page_pdf)
                 with open(nome_arq, 'wb') as output:
