@@ -6,7 +6,7 @@ import sys
 ctypes.windll.kernel32.SetConsoleTitleW("Manipulador de PDF")
 
 
-VERSION: str = 'v1.2.8'
+VERSION: str = 'v1.3.0'
 
 
 def run():
@@ -17,9 +17,8 @@ def run():
 
 
 if __name__ == '__main__':
-    # try:
-    #     run()
-    # except Exception as e:
-    #     print(e)
-    #     input()
-    run()
+    try:
+        run()
+    except Exception as e:
+        print(e)
+        input()
