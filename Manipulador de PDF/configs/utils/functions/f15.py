@@ -35,6 +35,7 @@ def f15() -> int:
         nome = rows[-3][rows[-3].find("Endereço")+len("Endereço"):]
         print(cnpj)
         print(nome)
+        
         new_path = f'NF {prefixo} {nome} - {cnpj}.pdf'
         os.rename(file, new_path)
 

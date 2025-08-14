@@ -6,6 +6,14 @@ import sys
 ctypes.windll.kernel32.SetConsoleTitleW("Manipulador de PDF")
 
 
+if getattr(sys, 'frozen', False):
+    # Caminho da pasta onde o executável está
+    ROOT_DIR = os.path.dirname(sys.executable)
+else:
+    # Caminho da pasta onde o script .py está
+    ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
 VERSION: str = 'v1.3.0'
 
 
