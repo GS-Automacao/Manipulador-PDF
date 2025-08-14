@@ -6,6 +6,16 @@ import os
 def f15() -> int:
     files = [file for file in os.listdir() if '.pdf' in file.lower()]
     n_pags = len(files)
+    prefixos = {
+        '0': 'Adm',
+        '1': 'Despesa'
+    }
+    print('Digite '
+          '0 para definir as NFs como Adm;'
+          '1 para Despesa;'
+          '2 para nenhum.\n')
+    r = input()
+    prefixo = prefixos.get(r, '')
     for file in tqdm(files):
         with open(file, 'rb') as file_bin:
             pdf = PdfReader(file_bin)
@@ -17,7 +27,7 @@ def f15() -> int:
             elif row.startswith('Insc.Municipal'):
                 cnpj = ''.join(char for char in rows[i+1] if char.isnumeric())
                 break
-        new_path = f'NF {nome}-{cnpj}.pdf'
+        new_path = f'NF {prefixo} {nome}-{cnpj}.pdf'
         os.rename(file, new_path)
 
     return n_pags
