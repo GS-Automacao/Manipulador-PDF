@@ -21,13 +21,21 @@ def f15() -> int:
             pdf = PdfReader(file_bin)
             page = pdf.pages[0]
             rows = page.extract_text().split('\n')
-        for i, row in enumerate(rows):
-            if 'Competência' in row:
-                nome = row[:row.find('Competência')]
-            elif row.startswith('Insc.Municipal'):
-                cnpj = ''.join(char for char in rows[i+1] if char.isnumeric())
-                break
-        new_path = f'NF {prefixo} {nome}-{cnpj}.pdf'
+            print(rows)
+        # for i, row in enumerate(rows):
+        #     if 'Competência' in row:
+        #         nome = row[:row.find('Competência')]
+        #         print(nome)
+        #     elif row.startswith('Insc.Municipal'):
+        #         cnpj = ''.join(char for char in rows[i+1] if char.isnumeric())
+        #         print(cnpj)
+        #         break
+
+        cnpj = rows[-1][:18].replace(".", "").replace("/", "").replace("-", "")
+        nome = rows[-3][rows[-3].find("Endereço")+len("Endereço"):]
+        print(cnpj)
+        print(nome)
+        new_path = f'NF {prefixo} {nome} - {cnpj}.pdf'
         os.rename(file, new_path)
 
     return n_pags
