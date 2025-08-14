@@ -22,6 +22,7 @@ def f15() -> int:
             page = pdf.pages[0]
             rows = page.extract_text().split('\n')
             print(rows)
+            
         # for i, row in enumerate(rows):
         #     if 'Competência' in row:
         #         nome = row[:row.find('Competência')]
@@ -35,7 +36,7 @@ def f15() -> int:
         nome = rows[-3][rows[-3].find("Endereço")+len("Endereço"):]
         print(cnpj)
         print(nome)
-        
+
         new_path = f'NF {prefixo} {nome} - {cnpj}.pdf'
         os.rename(file, new_path)
 
