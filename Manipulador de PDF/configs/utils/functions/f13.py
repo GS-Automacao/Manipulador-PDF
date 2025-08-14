@@ -5,6 +5,16 @@ import os
 
 def f13() -> int:
     tot_pags: int = 0
+    prefixos = {
+        '0': 'Adm',
+        '1': 'Despesa'
+    }
+    print('Digite '
+          '0 para definir as NFs como Adm;'
+          '1 para Despesa;'
+          '2 para nenhum.\n')
+    r = input()
+    prefixo = prefixos.get(r, '')
 
     files = [file for file in os.listdir() if '.pdf' in file.lower()]
     for file in tqdm(files):
@@ -35,5 +45,5 @@ def f13() -> int:
                         break
         else:
             continue
-        os.rename(file, f'NF {nome}-{cnpj}.pdf')
+        os.rename(file, f'NF {prefixo} {nome}-{cnpj}.pdf')
     return tot_pags
