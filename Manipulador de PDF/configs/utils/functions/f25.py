@@ -22,5 +22,3 @@ def f25() -> int:
         novo_nome = f'{nome_cliente}-{num_nf}.pdf'
 
         os.rename(file, novo_nome)
-
-f25()
