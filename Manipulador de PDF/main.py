@@ -6,7 +6,7 @@ import sys
 ctypes.windll.kernel32.SetConsoleTitleW("Manipulador de PDF")
 
 
-VERSION: str = 'v1.3.0'
+VERSION: str = 'v1.4.0'
 
 
 def run():
