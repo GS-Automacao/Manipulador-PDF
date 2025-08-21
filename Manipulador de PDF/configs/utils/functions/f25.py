@@ -23,4 +23,3 @@ def f25() -> int:
 
         os.rename(file, novo_nome)
 
-f25()
