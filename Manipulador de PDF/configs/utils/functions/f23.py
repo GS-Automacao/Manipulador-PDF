@@ -19,7 +19,7 @@ def f23() -> int:
                 cnpj = ''.join(char for char in cnpj if char.isnumeric())
                 break
 
-        new_path = f'NF {nome}-{cnpj}.pdf'
+        new_path = f'{nome}-{cnpj} NF.pdf'
         os.rename(file, new_path)
     return n_pags
 
