@@ -26,6 +26,10 @@ def f13() -> int:
             # Modelo 1
             cnpj = ' ERRO '
             num_nf = ''.join(i for i in rows[1].split()[0] if i.isnumeric())
+            for row in rows[::-1]:
+                if row.startswith('Telefone:'):
+                    cnpj = ''.join(char for char in row.split()[-2] if char.isnumeric())[-14:]
+                    break
             for row in rows:
                 if 'Complemento:' in row:
                     nome = row[12:].strip()
