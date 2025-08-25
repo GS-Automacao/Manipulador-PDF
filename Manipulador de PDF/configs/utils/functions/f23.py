@@ -12,17 +12,16 @@ def f23() -> int:
             page = pdf.pages[0]
             rows = page.extract_text().split('\n')
         nome, cnpj = '---', '---'
-        for row in rows:
-            if row.startswith('Nome/Razão'):
-                nome = ' '.join(row.split()[1:])
-                break
-
         for i, row in enumerate(rows):
-            if row.startswith('Bairro:'):
-                cnpj = ''.join(char for char in rows[i-1] if char.isnumeric())
+            if row.startswith('Email:Inscrição:'):
+                nome = rows[i+1][:-18]
+                cnpj = rows[i+1][-18:]
+                cnpj = ''.join(char for char in cnpj if char.isnumeric())
                 break
 
         new_path = f'NF {nome}-{cnpj}.pdf'
         os.rename(file, new_path)
     return n_pags
 
+
+f23()
