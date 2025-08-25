@@ -23,5 +23,3 @@ def f23() -> int:
         os.rename(file, new_path)
     return n_pags
 
-
-f23()
