@@ -3,9 +3,8 @@ from configs.utils.menu_functions import main_hub
 import ctypes
 import os
 import sys
-ctypes.windll.kernel32.SetConsoleTitleW("Manipulador de PDF")
 
-VERSION: str = 'v1.4.3'
+VERSION: str = 'v1.5.0'
 
 
 def run():
