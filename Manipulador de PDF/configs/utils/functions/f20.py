@@ -32,7 +32,7 @@ def f20() -> int:
                 for i, row in enumerate(rows):
                     if 'C Custo' in row or 'Centro Custo' in row:
                         novo_centro_custo = ' '.join(rows[i+1].split()[1:]).replace('/', '')
-                        novo_codigo = row.split()[-1]
+                        novo_codigo = row.split()[-1].replace('/', '')
                         # novo_centro_custo = row.split(': ')[-1].replace('/', '')
                         # novo_codigo = row.split(': ')[2][:-9]
                         break
