@@ -22,8 +22,12 @@ def f26() -> int:
     for i, file in enumerate(tqdm([file for file in os.listdir() if file.lower().endswith('.pdf')])):
         tot_pags += 1
         with open(file, 'rb') as b:
-            pdf = PdfReader(b).pages[0]
-            rows = pdf.extract_text().split('\n')
+            pdf = PdfReader(b)
+            writer = PdfWriter()
+            for page in pdf.pages:
+                writer.add_page(page)
+            page = pdf.pages[0]
+            rows = page.extract_text().split('\n')
         for row in rows[::-1]:
             if row.startswith('Pagador '):
                 cnpj = row.split()[-1]
@@ -35,7 +39,6 @@ def f26() -> int:
             condominio = f'não encontrado{i}'
 
         nome_arq = f'Arquivos/{prefixo}{condominio}-{cnpj}.pdf'
-        writer = PdfWriter()
         with open(nome_arq, 'wb') as output:
             writer.write(output)
     return tot_pags
