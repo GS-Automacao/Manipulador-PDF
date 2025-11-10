@@ -30,7 +30,7 @@ def f09() -> int:
                 pdf = PdfReader(file)
                 tot_pags += len(pdf.pages)
 
-                for i, pag in enumerate(tqdm(pdf.pages, desc=f"Processando {arq}", unit="pág")):
+                for i, pag in enumerate(tqdm(pdf.pages,unit="pág")):
                     texto = pag.extract_text()
                     if not texto:
                         print(f"Página {i+1} sem texto legível, ignorada.")
