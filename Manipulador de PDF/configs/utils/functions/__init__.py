@@ -27,6 +27,9 @@ from .f23 import f23
 from .f24 import f24
 from .f25 import f25
 from .f26 import f26
+from .f27 import f27
+from .f28 import f28
+
 
 # Caminho do diretório onde este __init__.py está.
 diretorio = pathlib.Path(__file__).parent
@@ -61,5 +64,8 @@ NAMES = {
     23: 'Nfs Lauro de Freitas',
     24: 'Nfs Balneário Camburiu',
     25: 'Nfs Vitória',
-    26: 'Boletos Santander'
+    26: 'Boletos Santander',
+    27: 'Nfs Curitiba',
+    28: 'Nfs São Paulo'
+    
 }
